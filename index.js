@@ -15,9 +15,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/getmovie', (req, res) => {
-	const movieToSearch = req.body.queryResult.parameters.movie
-			? req.body.queryResult.parameters.movie
-			: 'demo null flim'
+	const movieToSearch = 'Fight Club'
 
 	const reqUrl = encodeURI(
 		`http://www.omdbapi.com/?t=${movieToSearch}&apikey=${process.env.API_KEY}`

@@ -15,42 +15,10 @@ app.get('/', (req, res) => {
 })
 
 app.post('/chatbot', (req, res) => {
-	const movieToSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.movie
-  ? req.body.queryResult.parameters.movie
-  : 'Fight Club'
-
-	const reqUrl = encodeURI(
-		`http://www.omdbapi.com/?t=${movieToSearch}&apikey=83615ef029b381da02201397b723754e`
-	)
-	http.get(
-		reqUrl,
-		responseFromAPI => {
-			let completeResponse = ''
-			responseFromAPI.on('data', chunk => {
-				completeResponse += chunk
-			})
-			responseFromAPI.on('end', () => {
-				const movie = JSON.parse(completeResponse)
-
-				let dataToSend = movieToSearch
-				dataToSend = `${movie.Title} was released in the year ${movie.Year}. It is directed by ${
-					movie.Director
-				} and stars ${movie.Actors}.\n Here some glimpse of the plot: ${movie.Plot}.
-                }`
-
-				return res.json({
-					fulfillmentText: dataToSend,
-					source: 'chatbot'
-				})
-			})
-		},
-		error => {
-			return res.json({
-				fulfillmentText: 'Could not get results at this time',
-				source: 'chatbot'
-			})
-		}
-	)
+	return res.json({
+    fulfillmentText: req.body.queryResult.parameters.movie,
+    source: 'chatbot'
+  })
 })
 
 app.listen(port, () => {

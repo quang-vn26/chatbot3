@@ -20,7 +20,7 @@ app.post('/chatbot', (req, res) => {
   : 'Fight Club'
 
 	const reqUrl = encodeURI(
-		`http://www.omdbapi.com/?t=${movieToSearch}&apikey=${process.env.API_KEY}`
+		`http://www.omdbapi.com/?t=${movieToSearch}&apikey=83615ef029b381da02201397b723754e`
 	)
 	http.get(
 		reqUrl,

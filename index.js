@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 
 app.post('/chatbot', (req, res) => {
 	return res.json({
-    fulfillmentText: req.body.queryResult.parameters.movie,
+    fulfillmentText: req.body.queryResult.parameters.device +'now is: '+req.body.queryResult.parameters.status,
     source: 'chatbot'
   })
 })
